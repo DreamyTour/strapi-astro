@@ -1,0 +1,16 @@
+---
+import fetchApi from '@/lib/strapi';
+import type {Global} from "@/interface/global"
+import type { _ } from 'node_modules/tailwindcss/dist/colors-C__qRT83';
+
+const globalData = await fetchApi<Global>({
+    endpoint: "global",
+    wrappedByKey: "data"
+});
+
+const {topBar, headerTop,menu} = globalData
+
+---
+<header>
+<div>{topBar.text}</div>
+</header>
