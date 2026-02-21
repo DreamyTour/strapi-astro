@@ -1,9 +1,18 @@
 ---
 import '../styles/global.css';
+import '@fontsource-variable/outfit';
+
+import fetchApi from "@/lib/strapi";
+import type { Global } from "@/interface/global";
+
+const globalData = await fetchApi<Global>({
+  endpoint: "global",
+  wrappedByKey: "data"
+});
+
 import Header from '@/components/Header.astro'
 import Footer from '@/components/Footer.astro'
 
-const { content } = Astro.props;
 ---
 
 <html lang="en">
@@ -14,8 +23,15 @@ const { content } = Astro.props;
 		<link rel="icon" href="/favicon.ico" />
 	</head>
 	<body>
-		<Header/>
+		<Header data={globalData} />
+		<main>
 		<slot />
+		</main>
 		<Footer/>
 	</body>
 </html>
+<style>
+	html{
+		font-family: 'Outfit Variable', sans-serif;
+	}
+</style>

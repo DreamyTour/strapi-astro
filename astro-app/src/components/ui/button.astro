@@ -1,0 +1,24 @@
+---
+interface Props {
+  label: string;
+  href: string;
+  type?: "PRIMARY" | "SECONDARY";
+  isExternal?: boolean;
+}
+
+const { label, href, type = "PRIMARY", isExternal = false } = Astro.props;
+
+// Seguridad para links externos
+const target = isExternal ? "_blank" : "_self";
+const rel = isExternal ? "noopener noreferrer" : undefined;
+
+// Clases dinámicas según tipo
+const classes =
+  type === "PRIMARY"
+    ? "bg-secondary text-white hover:bg-secondary/80 px-4 py-2 rounded-md font-outfit font-medium transition"
+    : "border border-secondary text-secondary bg-white hover:bg-secondary/10 px-4 py-2 rounded-md font-outfit font-medium transition";
+---
+
+<a href={href} target={target} rel={rel} class={classes}>
+  {label}
+</a>

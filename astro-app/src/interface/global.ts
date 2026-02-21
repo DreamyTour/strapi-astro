@@ -22,6 +22,8 @@ export interface TopBar {
 export interface Logo {
   id: number;
   label: string;
+  url: string;
+  isExternal: boolean;
   imagen: Imagen;
 }
 export interface HeaderTop {
